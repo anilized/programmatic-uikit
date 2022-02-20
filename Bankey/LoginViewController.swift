@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    let headerLabel = UILabel()
+    let descriptionLabel = UILabel()
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
@@ -46,12 +48,44 @@ extension LoginViewController{
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.isHidden = true
         
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel.textAlignment = .center
+        headerLabel.numberOfLines = 0
+        headerLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        headerLabel.adjustsFontForContentSizeCategory = true
+        headerLabel.text = "Bankey"
+        
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        descriptionLabel.adjustsFontForContentSizeCategory = true
+        descriptionLabel.text = "Your premium source for all things banking!"
+        
+        
     }
     
     private func layout() {
+        view.addSubview(headerLabel)
+        view.addSubview(descriptionLabel)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        
+        
+        // Title
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalToSystemSpacingBelow: headerLabel.bottomAnchor, multiplier: 3),
+            headerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // Subtitle
+        NSLayoutConstraint.activate([
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: descriptionLabel.bottomAnchor, multiplier: 3),
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
