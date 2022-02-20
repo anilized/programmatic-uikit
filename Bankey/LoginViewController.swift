@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
 
 }
 
+// MARK: Actions
+
 extension LoginViewController{
     private func style() {
         loginView.translatesAutoresizingMaskIntoConstraints = false
